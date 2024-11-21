@@ -1,0 +1,71 @@
+#include <iostream>
+#include <ctime>
+using namespace std;
+
+int mychoice();
+int pcchoice();
+bool winner(int player,int computer);
+int main()
+{
+    bool endgame = false;
+    do
+    {
+    int PlayerChoice =mychoice();
+    int ComputerChoice=pcchoice();
+    //"for rock-->press 1 \n"<<"for Paper -->press 2 \n"<<"for scissors-->press 3 \n"
+    endgame =winner(PlayerChoice,ComputerChoice) ;
+    }while(!endgame);
+}
+int mychoice()
+{
+    // string choice;
+    cout <<"Choose between Rock, Paper and Scissors\n";
+    cout<<"for rock-->press 1 \n"<<"for Paper -->press 2 \n"<<"for scissors-->press 3 \n";
+    int choice;
+    cin>>choice;
+    while (choice<1||choice>3)
+    {
+        cout<<"Invalid choice! Please choose 1 for Rock, 2 for Paper, or 3 for Scissors: ";
+        cin>>choice;
+    }
+    return choice;
+}
+int pcchoice()
+{
+    srand(time(NULL));
+    int num=rand()%3+1;
+    switch (num)
+    {
+    case 1:
+    // pchoice=1;//"Rock"
+    cout<<"The computer choosed Rock \t";
+        break;
+    case 2:
+    // pchoice=2;//"Paper"
+    cout<<"The computer choosed Paper \t";
+        break;
+    case 3:
+    // pchoice=3;//"Scissors"
+    cout<<"The computer choosed Scissors \t";
+        break;
+    }
+    return num;
+}
+bool winner(int player,int computer)
+{
+if (player == computer)
+    {
+        cout << "It's a tie! Play again \n";
+        return false; // No winner yet
+    }
+        else if ((player==1&&computer==3)||(player==2&&computer==1)||(player==3&&computer==2))  
+    {
+        cout << "You win!\n";
+        return true;
+    }
+    else
+    {
+        cout << "Computer wins!\n";
+        return true; 
+    }
+}
